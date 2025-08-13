@@ -1,0 +1,84 @@
+npm init -y
+npm install express twilio dotenv
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Product Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f7f9fc;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    select {
+      padding: 6px;
+      margin: 10px 0 20px;
+      border: 2px solid #4a90e2;
+      border-radius: 5px;
+      outline: none;
+      background-color: #fff;
+    }
+
+    .product {
+      padding: 12px;
+      border: 1px solid #ddd;
+      margin: 5px 0;
+      border-radius: 6px;
+      background-color: #fff;
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      background-color: #f0f4ff;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Product List</h2>
+
+  <label for="categoryFilter">Filter by Category:</label>
+  <select id="categoryFilter">
+    <option value="All">All</option>
+    <option value="Category 1">Category 1</option>
+    <option value="Category 2">Category 2</option>
+    <option value="Category 3">Category 3</option>
+  </select>
+
+  <div id="productList">
+    <div class="product" data-category="Category 1">👟 Shoes - Category 1</div>
+    <div class="product" data-category="Category 2">👕 Shirt - Category 2</div>
+    <div class="product" data-category="Category 3">⌚ Watch - Category 3</div>
+    <div class="product" data-category="Category 1">🎒 Bag - Category 1</div>
+    <div class="product" data-category="Category 2">🧢 Cap - Category 2</div>
+  </div>
+
+  <script>
+    const categoryFilter = document.getElementById('categoryFilter');
+    const products = document.querySelectorAll('.product');
+
+    categoryFilter.addEventListener('change', function() {
+      const selectedCategory = categoryFilter.value;
+
+      products.forEach(product => {
+        if (selectedCategory === 'All' || product.dataset.category === selectedCategory) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
